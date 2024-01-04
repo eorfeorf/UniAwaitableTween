@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace UniAwaitableTween.Runtime
 {
-    public abstract class SequenceBase<LerpType> : ISequence
+    public abstract class BehaviourBase<TValue> : IBehaviour
     {
-        private SequenceData<LerpType> _data;
+        private BehaviourData<TValue> _data;
 
         /// <summary>
         /// 補間データの初期化.
@@ -15,9 +15,9 @@ namespace UniAwaitableTween.Runtime
         /// <param name="end"></param>
         /// <param name="startTime"></param>
         /// <param name="endTime"></param>
-        protected void Initialize(LerpType begin, LerpType end, float startTime, float endTime)
+        protected void Initialize(TValue begin, TValue end, float startTime, float endTime)
         {
-            _data = new SequenceData<LerpType>(begin, end, startTime, endTime);
+            _data = new BehaviourData<TValue>(begin, end, startTime, endTime);
         }
 
         /// <summary>
@@ -48,6 +48,6 @@ namespace UniAwaitableTween.Runtime
         /// <param name="end"></param>
         /// <param name="t"></param>
         /// <returns></returns>
-        protected abstract void UpdateLerp(LerpType start, LerpType end, float t);
+        protected abstract void UpdateLerp(TValue start, TValue end, float t);
     }
 }

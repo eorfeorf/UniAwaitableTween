@@ -5,11 +5,11 @@ namespace UniAwaitableTween.Runtime
     /// <summary>
     /// 移動シーケンス.
     /// </summary>
-    public sealed class SequenceMove : SequenceBase<Vector3>
+    public sealed class BehaviourMove : BehaviourBase<Vector3>
     {
         private readonly Transform _origin;
 
-        public SequenceMove(Transform origin, Vector3 target, float duration)
+        public BehaviourMove(Transform origin, Vector3 target, float duration)
         {
             _origin = origin;
             Initialize(origin.position, origin.position + target, Time.time, Time.time + duration);

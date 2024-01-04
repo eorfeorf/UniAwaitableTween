@@ -18,12 +18,12 @@ namespace UniAwaitableTween.Runtime
         /// <param name="ct"></param>
         public static async UniTask Move(Transform origin, Vector3 target, float duration, CancellationToken ct = default)
         {
-            await SequenceManager.PlayAsync(new SequenceMove(origin, target, duration), ct);
+            await BehaviourController.PlayAsync(new BehaviourMove(origin, target, duration), ct);
         }
         
         public static async UniTask ColorFade(Color color, Color target, float duration, CancellationToken ct = default)
         {
-            await SequenceManager.PlayAsync(new SequenceColor(ref color, target, duration), ct);
+            await BehaviourController.PlayAsync(new BehaviourColor(color, target, duration), ct);
         }
     }
 

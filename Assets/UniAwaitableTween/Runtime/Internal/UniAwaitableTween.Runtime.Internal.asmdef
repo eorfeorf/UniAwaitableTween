@@ -1,9 +1,8 @@
 {
-    "name": "UniAwaitableTween.Runtime",
+    "name": "UniAwaitableTween.Runtime.Internal",
     "rootNamespace": "",
     "references": [
-        "UniTask",
-        "UniAwaitableTween.Runtime.Internal"
+        "UniTask"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

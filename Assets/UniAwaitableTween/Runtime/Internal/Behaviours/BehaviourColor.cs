@@ -2,11 +2,11 @@
 
 namespace UniAwaitableTween.Runtime
 {
-    public class SequenceColor : SequenceBase<Color>
+    public class BehaviourColor : BehaviourBase<Color>
     {
         private Color _color;
         
-        public SequenceColor(ref Color start, Color target, float duration)
+        public BehaviourColor(Color start, Color target, float duration)
         {
             _color = start;
             Initialize(start, target, Time.time, Time.time + duration);
