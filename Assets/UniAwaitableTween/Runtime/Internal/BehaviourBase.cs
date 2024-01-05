@@ -36,11 +36,20 @@ namespace UniAwaitableTween.Runtime
                     return;
                 }
                 t = Mathf.Clamp01(t);
-                UpdateLerp(_data.Start, _data.End, t);
+                Lerp(_data.Start, _data.End, t);
                 await UniTask.Yield();
             }
         }
-        
+
+        /// <summary>
+        /// Lerpのtを設定する.
+        /// </summary>
+        /// <param name="t"></param>
+        public void SetLerpT(float t)
+        {
+            Lerp(_data.Start, _data.End, t);
+        }
+
         /// <summary>
         /// 補間関数.
         /// </summary>
@@ -48,6 +57,6 @@ namespace UniAwaitableTween.Runtime
         /// <param name="end"></param>
         /// <param name="t"></param>
         /// <returns></returns>
-        protected abstract void UpdateLerp(TValue start, TValue end, float t);
+        protected abstract void Lerp(TValue start, TValue end, float t);
     }
 }

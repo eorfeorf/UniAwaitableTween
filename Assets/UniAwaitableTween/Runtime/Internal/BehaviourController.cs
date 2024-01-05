@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 
 namespace UniAwaitableTween.Runtime
@@ -10,7 +11,14 @@ namespace UniAwaitableTween.Runtime
     {
         public static async UniTask PlayAsync(IBehaviour behaviour, CancellationToken ct)
         {
-            await behaviour.UpdateAsync(ct);
+            try
+            {
+                await behaviour.UpdateAsync(ct);
+            }
+            catch (OperationCanceledException)
+            {
+                behaviour.SetLerpT(1f);
+            }
         }
     }
 }

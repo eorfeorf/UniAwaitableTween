@@ -12,7 +12,7 @@ namespace UniAwaitableTween.Runtime
             Initialize(start, target, Time.time, Time.time + duration);
         }
 
-        protected override void UpdateLerp(Color start, Color end, float t)
+        protected override void Lerp(Color start, Color end, float t)
         {
             _color = Color.Lerp(start, end, t);
         }

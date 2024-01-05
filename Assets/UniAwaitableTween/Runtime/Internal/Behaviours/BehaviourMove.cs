@@ -15,7 +15,7 @@ namespace UniAwaitableTween.Runtime
             Initialize(origin.position, origin.position + target, Time.time, Time.time + duration);
         }
 
-        protected override void UpdateLerp(Vector3 start, Vector3 end, float t)
+        protected override void Lerp(Vector3 start, Vector3 end, float t)
         {
             _origin.position = Vector3.Lerp(start, end, t);
         }

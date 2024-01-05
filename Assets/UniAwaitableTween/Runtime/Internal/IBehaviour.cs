@@ -9,5 +9,6 @@ namespace UniAwaitableTween.Runtime
     public interface IBehaviour
     {
         public UniTask UpdateAsync(CancellationToken ct);
+        public void SetLerpT(float t);
     }
 }
