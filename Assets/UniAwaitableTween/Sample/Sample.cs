@@ -13,6 +13,8 @@ public class Sample : MonoBehaviour
         await Tween.Move(_target, Vector3.down, 0.1f);
         await Tween.Move(_target, Vector3.left, 0.1f);
         await Tween.Move(_target, Vector3.right, 0.1f);
+        await Tween.ColorFade(_target.gameObject.GetComponent<MeshRenderer>().material, Color.black, 1f);
+        await Tween.ColorFade(_target.gameObject.GetComponent<MeshRenderer>().material, Color.white, 1f);
     }
 
     private async void Update()

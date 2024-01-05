@@ -21,9 +21,9 @@ namespace UniAwaitableTween.Runtime
             await BehaviourController.PlayAsync(new BehaviourMove(origin, target, duration), ct);
         }
         
-        public static async UniTask ColorFade(Color color, Color target, float duration, CancellationToken ct = default)
+        public static async UniTask ColorFade(Material origin, Color target, float duration, CancellationToken ct = default)
         {
-            await BehaviourController.PlayAsync(new BehaviourColor(color, target, duration), ct);
+            await BehaviourController.PlayAsync(new BehaviourColor(origin, target, duration), ct);
         }
     }
 
