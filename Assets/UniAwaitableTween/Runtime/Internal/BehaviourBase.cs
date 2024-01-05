@@ -29,13 +29,13 @@ namespace UniAwaitableTween.Runtime
             while (true)
             {
                 ct.ThrowIfCancellationRequested();
-
+                
                 var t = (Time.time - _data.StartTime) / (_data.EndTime - _data.StartTime);
-                t = Mathf.Clamp01(t);
                 if (t > 1f)
                 {
                     return;
                 }
+                t = Mathf.Clamp01(t);
                 UpdateLerp(_data.Start, _data.End, t);
                 await UniTask.Yield();
             }
