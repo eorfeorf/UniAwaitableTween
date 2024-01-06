@@ -4,17 +4,17 @@ namespace UniAwaitableTween.Runtime
 {
     public class BehaviourColor : BehaviourBase<Color>
     {
-        private Material _material;
+        private readonly Material _origin;
         
-        public BehaviourColor(Material start, Color target, float duration)
+        public BehaviourColor(Material origin, Color value, float duration)
+            : base(origin.color, value, Time.time, Time.time + duration)
         {
-            _material = start;
-            Initialize(_material.color, target, Time.time, Time.time + duration);
+            _origin = origin;
         }
 
-        protected override void Lerp(Color start, Color end, float t)
+        protected override void UpdateLerp(Color start, Color end, float t)
         {
-            _material.color = Color.Lerp(start, end, t);
+            _origin.color = Color.Lerp(start, end, t);
         }
     }
 }

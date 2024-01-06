@@ -6,7 +6,7 @@ namespace UniAwaitableTween.Runtime
 {
     public abstract class BehaviourBase<TValue> : IBehaviour
     {
-        private BehaviourData<TValue> _data;
+        private readonly BehaviourData<TValue> _data;
 
         /// <summary>
         /// 補間データの初期化.
@@ -15,11 +15,11 @@ namespace UniAwaitableTween.Runtime
         /// <param name="end"></param>
         /// <param name="startTime"></param>
         /// <param name="endTime"></param>
-        protected void Initialize(TValue begin, TValue end, float startTime, float endTime)
+        protected BehaviourBase(TValue begin, TValue end, float startTime, float endTime)
         {
             _data = new BehaviourData<TValue>(begin, end, startTime, endTime);
         }
-
+        
         /// <summary>
         /// 時間経過による補間.
         /// </summary>
@@ -36,7 +36,7 @@ namespace UniAwaitableTween.Runtime
                     return;
                 }
                 t = Mathf.Clamp01(t);
-                Lerp(_data.Start, _data.End, t);
+                UpdateLerp(_data.Start, _data.End, t);
                 await UniTask.Yield();
             }
         }
@@ -47,7 +47,7 @@ namespace UniAwaitableTween.Runtime
         /// <param name="t"></param>
         public void SetLerpT(float t)
         {
-            Lerp(_data.Start, _data.End, t);
+            UpdateLerp(_data.Start, _data.End, t);
         }
 
         /// <summary>
@@ -57,6 +57,6 @@ namespace UniAwaitableTween.Runtime
         /// <param name="end"></param>
         /// <param name="t"></param>
         /// <returns></returns>
-        protected abstract void Lerp(TValue start, TValue end, float t);
+        protected abstract void UpdateLerp(TValue start, TValue end, float t);
     }
 }

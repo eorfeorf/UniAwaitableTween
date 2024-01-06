@@ -9,13 +9,13 @@ namespace UniAwaitableTween.Runtime
     {
         private readonly Transform _origin;
 
-        public BehaviourMove(Transform origin, Vector3 target, float duration)
+        public BehaviourMove(Transform origin, Vector3 value, float duration)
+            : base(origin.position, origin.position + value, Time.time, Time.time + duration)
         {
             _origin = origin;
-            Initialize(origin.position, origin.position + target, Time.time, Time.time + duration);
         }
 
-        protected override void Lerp(Vector3 start, Vector3 end, float t)
+        protected override void UpdateLerp(Vector3 start, Vector3 end, float t)
         {
             _origin.position = Vector3.Lerp(start, end, t);
         }

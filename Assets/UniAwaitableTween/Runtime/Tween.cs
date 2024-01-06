@@ -13,17 +13,17 @@ namespace UniAwaitableTween.Runtime
         /// Transform.Position
         /// </summary>
         /// <param name="origin"></param>
-        /// <param name="target"></param>
+        /// <param name="end"></param>
         /// <param name="duration"></param>
         /// <param name="ct"></param>
-        public static async UniTask Move(Transform origin, Vector3 target, float duration, CancellationToken ct = default)
+        public static async UniTask Move(Transform origin, Vector3 end, float duration, CancellationToken ct = default)
         {
-            await BehaviourController.PlayAsync(new BehaviourMove(origin, target, duration), ct);
+            await BehaviourController.PlayAsync(new BehaviourMove(origin, end, duration), ct);
         }
         
-        public static async UniTask ColorFade(Material origin, Color target, float duration, CancellationToken ct = default)
+        public static async UniTask ColorFade(Material origin, Color end, float duration, CancellationToken ct = default)
         {
-            await BehaviourController.PlayAsync(new BehaviourColor(origin, target, duration), ct);
+            await BehaviourController.PlayAsync(new BehaviourColor(origin, end, duration), ct);
         }
     }
 

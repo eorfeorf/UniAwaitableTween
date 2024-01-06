@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using UniAwaitableTween.Runtime;
 using UnityEngine;
@@ -27,5 +28,11 @@ public class Sample : MonoBehaviour
             await Tween.Move(_target, Vector3.up, 0.1f, _cts.Token);
             await Tween.Move(_target, Vector3.down, 0.1f, _cts.Token);
         }
+    }
+
+    private void OnDestroy()
+    {
+        _cts?.Cancel();
+        _cts?.Dispose();
     }
 }
