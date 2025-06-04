@@ -36,6 +36,8 @@ namespace UniAwaitableTween.Runtime
 
                 if (t >= 1f)
                 {
+                    // force final value so the last frame always reaches the end
+                    SetLerpT(1f);
                     return;
                 }
 
