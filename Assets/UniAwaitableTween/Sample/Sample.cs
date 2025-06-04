@@ -14,10 +14,18 @@ public class Sample : MonoBehaviour
         await Tween.Move(_target, Vector3.down, 0.1f);
         await _target.Move(Vector3.left, 0.1f);
         await _target.Move(Vector3.right, 0.1f);
+        await Tween.MoveLocal(_target, Vector3.forward, 0.1f);
+        await Tween.MoveLocal(_target, Vector3.back, 0.1f);
+        await _target.MoveLocal(Vector3.left, 0.1f);
+        await _target.MoveLocal(Vector3.right, 0.1f);
         await Tween.Scale(_target, Vector3.one * 2f, 0.1f);
         await Tween.Scale(_target, Vector3.one, 0.1f);
+        await Tween.ScaleLocal(_target, Vector3.one * 0.5f, 0.1f);
+        await Tween.ScaleLocal(_target, Vector3.one, 0.1f);
         await Tween.Rotate(_target, Quaternion.Euler(0f, 90f, 0f), 0.1f);
         await Tween.Rotate(_target, Quaternion.identity, 0.1f);
+        await Tween.RotateLocal(_target, Quaternion.Euler(0f, 0f, 90f), 0.1f);
+        await Tween.RotateLocal(_target, Quaternion.identity, 0.1f);
         await Tween.ColorFade(_target.gameObject.GetComponent<MeshRenderer>().material, Color.black, 1f);
         await Tween.ColorFade(_target.gameObject.GetComponent<MeshRenderer>().material, Color.white, 1f);
     }
@@ -31,6 +39,8 @@ public class Sample : MonoBehaviour
             _cts = new CancellationTokenSource();
             await Tween.Move(_target, Vector3.up, 0.1f, _cts.Token);
             await Tween.Move(_target, Vector3.down, 0.1f, _cts.Token);
+            await Tween.MoveLocal(_target, Vector3.forward, 0.1f, _cts.Token);
+            await Tween.MoveLocal(_target, Vector3.back, 0.1f, _cts.Token);
         }
     }
 
