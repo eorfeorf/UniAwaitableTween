@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -47,6 +48,22 @@ namespace UniAwaitableTween.Runtime
         public static async UniTask ColorFade(Material origin, Color end, float duration, CancellationToken ct = default)
         {
             await BehaviourController.PlayAsync(new BehaviourColor(origin, end, duration), ct);
+        }
+
+        /// <summary>
+        /// Executes tweens sequentially.
+        /// </summary>
+        public static async UniTask Sequence(IEnumerable<IBehaviour> behaviours, CancellationToken ct = default)
+        {
+            await BehaviourController.PlayAsync(new TweenSequence(behaviours), ct);
+        }
+
+        /// <summary>
+        /// Executes tweens concurrently.
+        /// </summary>
+        public static async UniTask Parallel(IEnumerable<IBehaviour> behaviours, CancellationToken ct = default)
+        {
+            await BehaviourController.PlayAsync(new TweenParallel(behaviours), ct);
         }
     }
 
