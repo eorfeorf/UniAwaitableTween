@@ -16,9 +16,9 @@ namespace UniAwaitableTween.Runtime
         /// <param name="offset">移動させる距離.</param>
         /// <param name="duration"></param>
         /// <param name="ct"></param>
-        public static async UniTask Move(Transform origin, Vector3 offset, float duration, CancellationToken ct = default)
+        public static async UniTask Move(Transform origin, Vector3 offset, float duration, EasingType easing = EasingType.Linear, CancellationToken ct = default)
         {
-            await BehaviourController.PlayAsync(new BehaviourMove(origin, offset, duration), ct);
+            await BehaviourController.PlayAsync(new BehaviourMove(origin, offset, duration, easing), ct);
         }
 
         /// <summary>
@@ -32,9 +32,9 @@ namespace UniAwaitableTween.Runtime
         /// <summary>
         /// Transform.Scale
         /// </summary>
-        public static async UniTask Scale(Transform origin, Vector3 end, float duration, CancellationToken ct = default)
+        public static async UniTask Scale(Transform origin, Vector3 end, float duration, EasingType easing = EasingType.Linear, CancellationToken ct = default)
         {
-            await BehaviourController.PlayAsync(new BehaviourScale(origin, end, duration), ct);
+            await BehaviourController.PlayAsync(new BehaviourScale(origin, end, duration, easing), ct);
         }
 
         /// <summary>
@@ -48,9 +48,9 @@ namespace UniAwaitableTween.Runtime
         /// <summary>
         /// Transform.Rotation
         /// </summary>
-        public static async UniTask Rotate(Transform origin, Quaternion end, float duration, CancellationToken ct = default)
+        public static async UniTask Rotate(Transform origin, Quaternion end, float duration, EasingType easing = EasingType.Linear, CancellationToken ct = default)
         {
-            await BehaviourController.PlayAsync(new BehaviourRotate(origin, end, duration), ct);
+            await BehaviourController.PlayAsync(new BehaviourRotate(origin, end, duration, easing), ct);
         }
 
         /// <summary>
@@ -68,9 +68,9 @@ namespace UniAwaitableTween.Runtime
         /// <param name="end"></param>
         /// <param name="duration"></param>
         /// <param name="ct"></param>
-        public static async UniTask ColorFade(Material origin, Color end, float duration, CancellationToken ct = default)
+        public static async UniTask ColorFade(Material origin, Color end, float duration, EasingType easing = EasingType.Linear, CancellationToken ct = default)
         {
-            await BehaviourController.PlayAsync(new BehaviourColor(origin, end, duration), ct);
+            await BehaviourController.PlayAsync(new BehaviourColor(origin, end, duration, easing), ct);
         }
     }
 
@@ -87,9 +87,9 @@ namespace UniAwaitableTween.Runtime
         /// <param name="duration"></param>
         /// <param name="ct"></param>
         /// <returns></returns>
-        public static async UniTask<Transform> Move(this Transform origin, Vector3 offset, float duration, CancellationToken ct = default)
+        public static async UniTask<Transform> Move(this Transform origin, Vector3 offset, float duration, EasingType easing = EasingType.Linear, CancellationToken ct = default)
         {
-            await BehaviourController.PlayAsync(new BehaviourMove(origin, offset, duration), ct);
+            await BehaviourController.PlayAsync(new BehaviourMove(origin, offset, duration, easing), ct);
             return origin;
         }
 
@@ -105,9 +105,9 @@ namespace UniAwaitableTween.Runtime
         /// <summary>
         /// Transform.Scale
         /// </summary>
-        public static async UniTask<Transform> Scale(this Transform origin, Vector3 target, float duration, CancellationToken ct = default)
+        public static async UniTask<Transform> Scale(this Transform origin, Vector3 target, float duration, EasingType easing = EasingType.Linear, CancellationToken ct = default)
         {
-            await BehaviourController.PlayAsync(new BehaviourScale(origin, target, duration), ct);
+            await BehaviourController.PlayAsync(new BehaviourScale(origin, target, duration, easing), ct);
             return origin;
         }
 
@@ -123,9 +123,9 @@ namespace UniAwaitableTween.Runtime
         /// <summary>
         /// Transform.Rotate
         /// </summary>
-        public static async UniTask<Transform> Rotate(this Transform origin, Quaternion target, float duration, CancellationToken ct = default)
+        public static async UniTask<Transform> Rotate(this Transform origin, Quaternion target, float duration, EasingType easing = EasingType.Linear, CancellationToken ct = default)
         {
-            await BehaviourController.PlayAsync(new BehaviourRotate(origin, target, duration), ct);
+            await BehaviourController.PlayAsync(new BehaviourRotate(origin, target, duration, easing), ct);
             return origin;
         }
 

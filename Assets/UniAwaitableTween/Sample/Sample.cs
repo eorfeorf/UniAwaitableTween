@@ -10,7 +10,7 @@ public class Sample : MonoBehaviour
 
     private async void Start()
     {
-        await Tween.Move(_target, Vector3.up, 0.1f);
+        await Tween.Move(_target, Vector3.up, 0.1f, easing: EasingType.EaseOutQuad);
         await Tween.Move(_target, Vector3.down, 0.1f);
         await _target.Move(Vector3.left, 0.1f);
         await _target.Move(Vector3.right, 0.1f);

@@ -7,6 +7,7 @@ namespace UniAwaitableTween.Runtime
     public abstract class BehaviourBase<TValue> : IBehaviour
     {
         private readonly BehaviourData<TValue> _data;
+        private readonly EasingType _easing;
 
         /// <summary>
         /// 補間データの初期化.
@@ -15,9 +16,10 @@ namespace UniAwaitableTween.Runtime
         /// <param name="end"></param>
         /// <param name="startTime"></param>
         /// <param name="endTime"></param>
-        protected BehaviourBase(TValue begin, TValue end, float startTime, float endTime)
+        protected BehaviourBase(TValue begin, TValue end, float startTime, float endTime, EasingType easing = EasingType.Linear)
         {
             _data = new BehaviourData<TValue>(begin, end, startTime, endTime);
+            _easing = easing;
         }
         
         /// <summary>
@@ -32,6 +34,7 @@ namespace UniAwaitableTween.Runtime
 
                 var t = (Time.time - _data.StartTime) / (_data.EndTime - _data.StartTime);
                 t = Mathf.Clamp01(t);
+                t = Easing.Evaluate(_easing, t);
                 UpdateLerp(_data.Start, _data.End, t);
 
                 if (t >= 1f)
@@ -51,7 +54,7 @@ namespace UniAwaitableTween.Runtime
         /// <param name="t"></param>
         public void SetLerpT(float t)
         {
-            UpdateLerp(_data.Start, _data.End, t);
+            UpdateLerp(_data.Start, _data.End, Easing.Evaluate(_easing, t));
         }
 
         /// <summary>
