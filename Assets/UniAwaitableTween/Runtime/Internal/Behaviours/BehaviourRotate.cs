@@ -9,8 +9,11 @@ namespace UniAwaitableTween.Runtime
     {
         private readonly Transform _origin;
 
-        public BehaviourRotate(Transform origin, Quaternion end, float duration)
-            : base(origin.rotation, end, Time.time, Time.time + duration)
+        public BehaviourRotate(Transform origin, Quaternion end, float duration, bool useUnscaledTime)
+            : base(origin.rotation, end,
+                useUnscaledTime ? Time.unscaledTime : Time.time,
+                (useUnscaledTime ? Time.unscaledTime : Time.time) + duration,
+                useUnscaledTime)
         {
             _origin = origin;
         }

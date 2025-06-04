@@ -15,9 +15,9 @@ namespace UniAwaitableTween.Runtime
         /// <param name="end"></param>
         /// <param name="startTime"></param>
         /// <param name="endTime"></param>
-        protected BehaviourBase(TValue begin, TValue end, float startTime, float endTime)
+        protected BehaviourBase(TValue begin, TValue end, float startTime, float endTime, bool useUnscaledTime)
         {
-            _data = new BehaviourData<TValue>(begin, end, startTime, endTime);
+            _data = new BehaviourData<TValue>(begin, end, startTime, endTime, useUnscaledTime);
         }
         
         /// <summary>
@@ -30,7 +30,8 @@ namespace UniAwaitableTween.Runtime
             {
                 ct.ThrowIfCancellationRequested();
 
-                var t = (Time.time - _data.StartTime) / (_data.EndTime - _data.StartTime);
+                var current = _data.UseUnscaledTime ? Time.unscaledTime : Time.time;
+                var t = (current - _data.StartTime) / (_data.EndTime - _data.StartTime);
                 t = Mathf.Clamp01(t);
                 UpdateLerp(_data.Start, _data.End, t);
 
