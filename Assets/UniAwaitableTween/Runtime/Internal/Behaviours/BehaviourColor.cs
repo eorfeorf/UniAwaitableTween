@@ -6,8 +6,8 @@ namespace UniAwaitableTween.Runtime
     {
         private readonly Material _origin;
         
-        public BehaviourColor(Material origin, Color value, float duration)
-            : base(origin.color, value, Time.time, Time.time + duration)
+        public BehaviourColor(Material origin, Color value, float duration, EasingType easing = EasingType.Linear)
+            : base(origin.color, value, Time.time, Time.time + duration, easing)
         {
             _origin = origin;
         }

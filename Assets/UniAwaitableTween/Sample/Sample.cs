@@ -10,11 +10,11 @@ public class Sample : MonoBehaviour
 
     private async void Start()
     {
-        await Tween.Move(_target, Vector3.up, 0.1f);
+        await Tween.Move(_target, Vector3.up, 0.1f, easing: EasingType.EaseOutQuad);
         await Tween.Move(_target, Vector3.down, 0.1f);
         await _target.Move(Vector3.left, 0.1f);
         await _target.Move(Vector3.right, 0.1f);
-        await Tween.Scale(_target, Vector3.one * 2f, 0.1f);
+        await Tween.Scale(_target, Vector3.one * 2f, 0.1f, easing: EasingType.EaseInOut);
         await Tween.Scale(_target, Vector3.one, 0.1f);
         await Tween.Rotate(_target, Quaternion.Euler(0f, 90f, 0f), 0.1f);
         await Tween.Rotate(_target, Quaternion.identity, 0.1f);
@@ -29,8 +29,8 @@ public class Sample : MonoBehaviour
             _cts?.Cancel();
             _cts?.Dispose();
             _cts = new CancellationTokenSource();
-            await Tween.Move(_target, Vector3.up, 0.1f, _cts.Token);
-            await Tween.Move(_target, Vector3.down, 0.1f, _cts.Token);
+            await Tween.Move(_target, Vector3.up, 0.1f, EasingType.EaseOutQuad, _cts.Token);
+            await Tween.Move(_target, Vector3.down, 0.1f, EasingType.EaseOutQuad, _cts.Token);
         }
     }
 

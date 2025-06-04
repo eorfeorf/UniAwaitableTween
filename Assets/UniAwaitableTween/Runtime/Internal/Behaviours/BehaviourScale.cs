@@ -9,8 +9,8 @@ namespace UniAwaitableTween.Runtime
     {
         private readonly Transform _origin;
 
-        public BehaviourScale(Transform origin, Vector3 end, float duration)
-            : base(origin.localScale, end, Time.time, Time.time + duration)
+        public BehaviourScale(Transform origin, Vector3 end, float duration, EasingType easing = EasingType.Linear)
+            : base(origin.localScale, end, Time.time, Time.time + duration, easing)
         {
             _origin = origin;
         }
