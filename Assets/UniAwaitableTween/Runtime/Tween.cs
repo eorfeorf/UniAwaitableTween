@@ -20,6 +20,22 @@ namespace UniAwaitableTween.Runtime
         {
             await BehaviourController.PlayAsync(new BehaviourMove(origin, end, duration), ct);
         }
+
+        /// <summary>
+        /// Transform.Scale
+        /// </summary>
+        public static async UniTask Scale(Transform origin, Vector3 end, float duration, CancellationToken ct = default)
+        {
+            await BehaviourController.PlayAsync(new BehaviourScale(origin, end, duration), ct);
+        }
+
+        /// <summary>
+        /// Transform.Rotation
+        /// </summary>
+        public static async UniTask Rotate(Transform origin, Quaternion end, float duration, CancellationToken ct = default)
+        {
+            await BehaviourController.PlayAsync(new BehaviourRotate(origin, end, duration), ct);
+        }
         
         /// <summary>
         /// カラーフェード.
@@ -50,6 +66,24 @@ namespace UniAwaitableTween.Runtime
         public static async UniTask<Transform> Move(this Transform origin, Vector3 target, float duration, CancellationToken ct = default)
         {
             await BehaviourController.PlayAsync(new BehaviourMove(origin, target, duration), ct);
+            return origin;
+        }
+
+        /// <summary>
+        /// Transform.Scale
+        /// </summary>
+        public static async UniTask<Transform> Scale(this Transform origin, Vector3 target, float duration, CancellationToken ct = default)
+        {
+            await BehaviourController.PlayAsync(new BehaviourScale(origin, target, duration), ct);
+            return origin;
+        }
+
+        /// <summary>
+        /// Transform.Rotate
+        /// </summary>
+        public static async UniTask<Transform> Rotate(this Transform origin, Quaternion target, float duration, CancellationToken ct = default)
+        {
+            await BehaviourController.PlayAsync(new BehaviourRotate(origin, target, duration), ct);
             return origin;
         }
     }
